@@ -38,13 +38,13 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisismysecret'
+        secret: process.env.secret
     }
 });
 app.use(session({
     // name:"jdfhzgl",
     store,
-    secret:"thisismysecret",
+    secret:process.env.secret,
     resave:false,
     saveUninitialized:true,
     cookie:{
