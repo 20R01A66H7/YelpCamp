@@ -1,0 +1,53 @@
+<% layout('layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">New campground</h1>
+        <div class="col-md-6 offset-md-3">
+    <form action="/campground/<%= camp._id %>?_method=PUT" method="post" novalidate class="validate-form">
+            <div class="mb-3">
+                <label for="title1" class="form-label text-info"><strong>Title</strong></label>
+                <input type="text" id="title1" name="title" class="form-control" value="<%= camp.title %>" required>
+            </div>
+    
+            <div class="mb-3">
+                <label for="location1" class="form-label text-info"><strong>Location</strong></label>
+                <input type="text" id="location1" name="location"  class="form-control" value="<%=camp.location%>" required>
+            </div>
+           
+            <div class="mb-3">
+                <label for="price1" class="form-label text-info"><strong>Price</strong></label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="number" class="form-control" id="price1" placeholder="Price" value="<%= camp.price %>" aria-label="Price" aria-describedby="basic-addon1" name="price" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description1" class="form-label text-info"><strong>Description</strong></label>
+                <textarea type="text" id="description1" name="description"  class="form-control" required><%= camp.description %></textarea>
+            </div>
+
+            <div class="mb-3">
+               <div> <label for="" class="form-label text-info"> <strong>Delete Images</strong> </label> </div>
+               <div>
+                <% camp.images.forEach((img,i)=>{%>
+
+                    <img src=<%= img.thumbnail %> alt="" class="img-thumbnail">
+                
+                    <input type="checkbox" name="deleteImage[]" value="<%= img.filename %>" id="image-<%= i %>"> <label for="image-<%= i %>" class="text-danger"> Delete ?</label>
+                    <!-- the above line is important -->
+
+                <% }) %>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image1" class="form-label text-info"><strong>Image URL</strong></label>
+                <!-- <input type="text" id="image1" name="image"  class="form-control" value="<%= camp.image %>" required> -->
+                <fieldset style="border: 1px solid black;"> <p> <strong class="text-danger">As of now updating images is not allowed, and we are working on it...</strong> </p></fieldset>
+            </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Edit Campground</button>
+            <button class="btn btn-danger"><a href="/campground/<%= camp._id %>">Cancel</a></button>
+        </div>
+        </form>
+    </div>
+    </div>
